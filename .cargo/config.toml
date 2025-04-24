@@ -1,0 +1,6 @@
+#[alias]
+#xtask = "run --package xtask --release --"
+
+[build]
+target = "wasm32-unknown-unknown"
+

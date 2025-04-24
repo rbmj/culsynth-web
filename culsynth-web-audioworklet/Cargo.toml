@@ -1,0 +1,21 @@
+[lib]
+crate-type = ["cdylib"]
+
+[package]
+name = "culsynth-web-audioworklet"
+description = "Culsynth Web AudioWorklet"
+version.workspace = true
+repository.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+culsynth_plugin = { workspace = true }
+console_error_panic_hook = { version = "0.1.7" }
+console_log = { version = "1.0" }
+log = { workspace = true }
+wmidi = {workspace = true }
+fixed = { workspace = true }
+wasm-bindgen = { workspace = true }
+serde = { workspace = true }
