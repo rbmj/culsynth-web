@@ -12,7 +12,6 @@ use wmidi::MidiMessage;
 pub struct SynthWorklet {
     voicealloc: PolySynth<f32>,
     params: OwnedMidiHandler,
-    debug_counter: u16,
 }
 
 #[wasm_bindgen]
@@ -24,7 +23,6 @@ impl SynthWorklet {
         Self {
             voicealloc: PolySynth::new(context, 4),
             params: OwnedMidiHandler::new(wmidi::Channel::from_index(channel - 1).unwrap()),
-            debug_counter: 0,
         }
     }
     #[wasm_bindgen]
@@ -40,7 +38,6 @@ impl SynthWorklet {
     }
     #[wasm_bindgen]
     pub fn process(&mut self, audio: &mut [f32]) {
-        self.debug_counter = self.debug_counter.wrapping_add(1);
         let params = self.params.get_params();
         let mut matrix = Some(self.params.get_matrix());
         for smp in audio.iter_mut() {
@@ -48,6 +45,17 @@ impl SynthWorklet {
         }
         let chunk_size = 4;
     }
+    #[wasm_bindgen]
+    pub fn process_stereo(&mut self, left: &mut [f32], right: &mut [f32]) {
+        let params = self.params.get_params();
+        let mut matrix = Some(self.params.get_matrix());
+        for (l, r) in left.iter_mut().zip(right.iter_mut()) {
+            let smp = self.voicealloc.next(&params, matrix.take().as_ref());
+            *l = smp;
+            *r = smp;
+        }
+    }
+
 }
 
 #[wasm_bindgen(start)]

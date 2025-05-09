@@ -18,7 +18,11 @@ class SynthProcessor extends AudioWorkletProcessor {
     }
     process(inputs, outputs, parameters) {
         if (this._synth) {
-            this._synth.process(outputs[0][0])
+            if (outputs[0].length > 1) {
+                this._synth.process_stereo(outputs[0][0], outputs[0][1]);
+            } else {
+                this._synth.process(outputs[0][0]);
+            }
         }
         return true;
     }
