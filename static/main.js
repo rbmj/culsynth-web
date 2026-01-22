@@ -1,4 +1,4 @@
-import init, { start_app } from './pkg/culsynth_web_ui.js';
+import init , { WebAppHandle } from './pkg/culsynth_web_ui.js';
 
 const ctx = new AudioContext()
 await ctx.audioWorklet.addModule('./processor.js')
@@ -16,4 +16,6 @@ fetch('./pkg/culsynth_web_audioworklet_bg.wasm').then(r => r.arrayBuffer()).then
 
 let wasm;
 wasm = await init();
-start_app(node, ctx);
+let app_handle;
+app_handle = new WebAppHandle();
+app_handle.start(node, ctx);

@@ -10,12 +10,15 @@ authors.workspace = true
 edition.workspace = true
 license.workspace = true
 
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ['-O3', '--enable-bulk-memory', '--enable-nontrapping-float-to-int']
+
 [dependencies]
 culsynth_plugin = { workspace = true }
-console_error_panic_hook = { version = "0.1.7" }
 console_log = { version = "1.0" }
 log = { workspace = true }
-wmidi = {workspace = true }
+wmidi = { workspace = true }
 fixed = { workspace = true }
 wasm-bindgen = { workspace = true }
 serde = { workspace = true }
+console_error_panic_hook = { workspace = true }

@@ -1,17 +1,14 @@
 [workspace]
 resolver = "2"
 
-members = [
-    "culsynth-web-audioworklet",
-    "culsynth-web-ui",
-]
+members = ["culsynth-web-audioworklet", "culsynth-web-ui"]
 
-default-members = [ "culsynth-web-audioworklet", "culsynth-web-ui" ]
+default-members = ["culsynth-web-audioworklet", "culsynth-web-ui"]
 
 [workspace.package]
 edition = "2021"
 repository = "https://github.com/rbmj/culsynth-web"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["R Blair Mason"]
 license = "MIT"
 
@@ -21,19 +18,20 @@ opt-level = 1
 [profile.release]
 lto = "thin"
 opt-level = 3
-#strip = "symbols"
+strip = "symbols"
 
 [workspace.dependencies]
-wasm-bindgen = { version = "0.2.100"}
+wasm-bindgen = { version = "0.2.100" }
 wmidi = "4.0"
 fixed = "1.28"
-eframe = { version = "0.31", features = []}
-egui = { version = "0.31", features = ["persistence", "log", "serde"] }
+eframe = { version = "0.33", features = [] }
+egui = { version = "0.33", features = ["persistence", "serde"] }
 log = { version = "0.4" }
 serde = { version = "1.0" }
+console_error_panic_hook = { version = "0.1.7" }
 
 [workspace.dependencies.culsynth_plugin]
-version = "0.3.0"
+version = "0.3.1"
 git = "https://github.com/rbmj/culsynth"
 branch = "master"
 default-features = false

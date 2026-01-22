@@ -1,9 +1,9 @@
 extern crate console_error_panic_hook;
 
+use culsynth_plugin::backend::context::Context;
 use culsynth_plugin::ownedmidihandler::OwnedMidiHandler;
 use culsynth_plugin::voicealloc::{PolySynth, VoiceAllocator};
 use culsynth_plugin::MidiHandler;
-use culsynth_plugin::backend::context::Context;
 use log::info;
 use wasm_bindgen::prelude::*;
 use wmidi::MidiMessage;
@@ -43,7 +43,6 @@ impl SynthWorklet {
         for smp in audio.iter_mut() {
             *smp = self.voicealloc.next(&params, matrix.take().as_ref())
         }
-        let chunk_size = 4;
     }
     #[wasm_bindgen]
     pub fn process_stereo(&mut self, left: &mut [f32], right: &mut [f32]) {
@@ -55,7 +54,6 @@ impl SynthWorklet {
             *r = smp;
         }
     }
-
 }
 
 #[wasm_bindgen(start)]
