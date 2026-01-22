@@ -11,7 +11,7 @@ default-members = [ "culsynth-web-audioworklet", "culsynth-web-ui" ]
 [workspace.package]
 edition = "2021"
 repository = "https://github.com/rbmj/culsynth-web"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["R Blair Mason"]
 license = "MIT"
 
@@ -33,7 +33,7 @@ log = { version = "0.4" }
 serde = { version = "1.0" }
 
 [workspace.dependencies.culsynth_plugin]
-version = "0.2.0"
+version = "0.3.0"
 git = "https://github.com/rbmj/culsynth"
 branch = "working"
 default-features = false
